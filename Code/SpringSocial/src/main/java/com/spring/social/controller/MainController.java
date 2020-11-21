@@ -9,20 +9,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
-import org.springframework.social.twitter.api.Tweet;
-import org.springframework.social.twitter.api.Twitter;
-import org.springframework.social.twitter.api.impl.TwitterTemplate;
-import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.social.configuration.SocialProperties;
 import com.spring.social.dao.AppUserDAO;
 import com.spring.social.dao.UserConnectionDAO;
 import com.spring.social.entity.AppRole;
@@ -40,6 +35,11 @@ import com.spring.social.form.MessageForm;
 import com.spring.social.security.SecurityAuto;
 import com.spring.social.utils.WebUtil;
 import com.spring.social.validator.AppUserValidator;
+
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 
 @Controller
 @Transactional
@@ -56,12 +56,13 @@ public class MainController {
 
 	@Autowired
 	private AppUserValidator appUserValidator;
-	
-	@Autowired
-	private ConnectionRepository connectionRepo;
+
 	
 	@Autowired
 	private UserConnectionDAO userConnectionDAO;
+	
+	@Autowired
+	private SocialProperties socialProperties;
 	
 
 	@InitBinder
@@ -229,61 +230,40 @@ public class MainController {
 	public void sendPostMessage(WebRequest request, Model model,
 			@ModelAttribute("messageForm") @Validated MessageForm messageForm,
 			Principal principal) {
-
-
-		Connection<Twitter> connection = connectionRepo.findPrimaryConnection(Twitter.class);
 		
 		
-		Twitter twitter = null;
 		
-		if(connection != null) {
-			twitter= (Twitter) connection.getApi();
+		UserConnection uc = userConnectionDAO.findUserConnectionByUserName(principal.getName());
 
+		try {
+			Twitter twitter = new TwitterFactory().getInstance();
 
-			//twitter.directMessageOperations().sendDirectMessage("_doolmen", "Hello !");
+			twitter.setOAuthConsumer(socialProperties.getTwitterConsumerKey(), socialProperties.getTwitterConsumerSecret());
+			AccessToken accessToken = new AccessToken(uc.getAccessToken(),uc.getSecret());
+
+			twitter.setOAuthAccessToken(accessToken);
 			
-			//send tweet
+			// get timleline
+			//ResponseList<Status> timeline = twitter.getHomeTimeline() ;
+		
+			// post tweet
 			
+			//with img if needed
 			/*
-			List<Tweet> timeline = twitter.timelineOperations().getHomeTimeline();
-			timeline.forEach(tweet -> {
-				
-				if(tweet.getText().contains("confier")) {
-					System.out.println("who : " + tweet.getFromUser());
-					System.out.println("whoId : " + tweet.getFromUserId());
-					System.out.println("text: " + tweet.getText());
-					System.out.println("is retweet : " + tweet.isRetweet());
-					System.out.println("a été retweeté : " + tweet.getRetweetCount());
-					System.out.println("favoris : " + tweet.getFavoriteCount());
-					
-					
-					if(tweet.isRetweet()) {
-						Tweet baseTweet = tweet.getRetweetedStatus();
-						System.out.println("\t user :" +baseTweet.getFromUser());
-						System.out.println("\t text : " + baseTweet.getText());
-						
-						System.out.println();
+			File file = new File("/images/Done.jpg"); 
 
-					}
-					System.out.println("image de profil :" + tweet.getProfileImageUrl());
-					System.out.println("images du tweet :");
-					tweet.getEntities().getMedia().forEach(media -> {
-						System.out.println("\t" +media.getMediaUrl());
-					});
-					
-					System.out.println();
-					System.out.println();
-				}
-			
-
-			});
-			
+			StatusUpdate status = new StatusUpdate(statusMessage);
+			status.setMedia(file); // set the image to be uploaded here.
+			twitter.updateStatus(status);
 			*/
-			twitter.timelineOperations().updateStatus(messageForm.getMessage());
-		}
-		else {
-			//twitter = new TwitterTemplate(userConnectionDAO.findUserConnectionByUserName(principal.getName()).getAccessToken());
-			// nop on peux pas lol
+			
+			twitter.updateStatus(messageForm.getMessage());
+			
+			// send DM
+			//twitter.sendDirectMessage("@_doolmen", "Hello !");
+
+		} catch (TwitterException te) {
+			te.printStackTrace();
 		}
 	}
 }
