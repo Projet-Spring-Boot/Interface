@@ -1,5 +1,7 @@
 package com.spring.social.social.configuration;
 
+import java.util.Locale;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,11 @@ import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.spring.social.configuration.SocialProperties;
 import com.spring.social.dao.AppUserDAO;
@@ -27,7 +34,7 @@ import com.spring.social.social.ConnectionSignUpImpl;
 
 @Configuration
 @EnableSocial
-public class SocialConfiguration implements SocialConfigurer {
+public class SocialConfiguration implements SocialConfigurer, WebMvcConfigurer {
 
 	private boolean autoSignUp = false;
 
@@ -107,5 +114,22 @@ public class SocialConfiguration implements SocialConfigurer {
 		return new ConnectController(connectionFactoryLocator, connectionRepository);
 	}
 
-
+	@Bean
+	public LocaleResolver localeResolver() {
+	    SessionLocaleResolver slr = new SessionLocaleResolver();
+	    slr.setDefaultLocale(Locale.US);
+	    return slr;
+	}
+	
+	@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor() {
+	    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+	    lci.setParamName("lang");
+	    return lci;
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+	    registry.addInterceptor(localeChangeInterceptor());
+	}
 }
