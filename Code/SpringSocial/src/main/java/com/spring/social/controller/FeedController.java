@@ -24,13 +24,13 @@ import twitter4j.auth.AccessToken;
 @Controller
 @RequestMapping("/sendMessage")
 public class FeedController {
-	
+
 	@Autowired
 	private UserConnectionDAO userConnectionDAO;
-	
+
 	@Autowired
 	private SocialProperties socialProperties;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String sendMessage(Model model) {
 		model.addAttribute("messageForm", new MessageForm());
@@ -39,39 +39,36 @@ public class FeedController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public void sendPostMessage(WebRequest request, Model model,
-			@ModelAttribute("messageForm") @Validated MessageForm messageForm,
-			Principal principal) {
-		
-		
-		
+			@ModelAttribute("messageForm") @Validated MessageForm messageForm, Principal principal) {
+
 		UserConnection uc = userConnectionDAO.findUserConnectionByUserName(principal.getName());
 
 		try {
 			Twitter twitter = new TwitterFactory().getInstance();
 
-			twitter.setOAuthConsumer(socialProperties.getTwitterConsumerKey(), socialProperties.getTwitterConsumerSecret());
-			AccessToken accessToken = new AccessToken(uc.getAccessToken(),uc.getSecret());
+			twitter.setOAuthConsumer(socialProperties.getTwitterConsumerKey(),
+					socialProperties.getTwitterConsumerSecret());
+			AccessToken accessToken = new AccessToken(uc.getAccessToken(), uc.getSecret());
 
 			twitter.setOAuthAccessToken(accessToken);
-			
-			// get timleline
-			//ResponseList<Status> timeline = twitter.getHomeTimeline() ;
-		
-			// post tweet
-			
-			//with img if needed
-			/*
-			File file = new File("/images/Done.jpg"); 
 
-			StatusUpdate status = new StatusUpdate(statusMessage);
-			status.setMedia(file); // set the image to be uploaded here.
-			twitter.updateStatus(status);
-			*/
-			
+			// get timleline
+			// ResponseList<Status> timeline = twitter.getHomeTimeline() ;
+
+			// post tweet
+
+			// with img if needed
+			/*
+			 * File file = new File("/images/Done.jpg");
+			 * 
+			 * StatusUpdate status = new StatusUpdate(statusMessage); status.setMedia(file);
+			 * // set the image to be uploaded here. twitter.updateStatus(status);
+			 */
+
 			twitter.updateStatus(messageForm.getMessage());
-			
+
 			// send DM
-			//twitter.sendDirectMessage("@_doolmen", "Hello !");
+			// twitter.sendDirectMessage("@_doolmen", "Hello !");
 
 		} catch (TwitterException te) {
 			te.printStackTrace();

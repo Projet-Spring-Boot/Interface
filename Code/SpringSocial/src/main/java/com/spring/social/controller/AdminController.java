@@ -23,7 +23,6 @@ public class AdminController {
 		System.out.println("User Name: " + userName);
 
 		UserDetails loginedUser = (UserDetails) ((Authentication) principal).getPrincipal();
-		
 
 		String userInfo = WebUtil.toString(loginedUser);
 		model.addAttribute("userInfo", userInfo);

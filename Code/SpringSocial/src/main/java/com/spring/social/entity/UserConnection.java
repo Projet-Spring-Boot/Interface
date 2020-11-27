@@ -137,5 +137,4 @@ public class UserConnection implements Serializable {
 		this.expireTime = expireTime;
 	}
 
-	
 }

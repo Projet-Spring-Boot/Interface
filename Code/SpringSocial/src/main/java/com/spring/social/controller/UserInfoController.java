@@ -14,16 +14,16 @@ import com.spring.social.entity.AppUser;
 @Controller
 @RequestMapping("/userInfo")
 public class UserInfoController {
-	
+
 	@Autowired
 	private AppUserDAO appUserDAO;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String userInfo(Model model, Principal principal) {
 
 		// After user login successfully.
 		AppUser logineduser2 = this.appUserDAO.findAppUserByUserName(principal.getName());
-		
+
 		model.addAttribute("appUser", logineduser2);
 
 		return "userInfoPage";

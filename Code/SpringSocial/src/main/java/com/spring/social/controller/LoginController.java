@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String login(Model model) {
-		
-		//model.addAttribute("host", "http://localhost:8081/login");
+
+		// model.addAttribute("host", "http://localhost:8081/login");
 		return "loginPage";
 	}
-	
+
 	// User login with social networking,
 	// but does not allow the app to view basic information
 	// application will redirect to page / signin.

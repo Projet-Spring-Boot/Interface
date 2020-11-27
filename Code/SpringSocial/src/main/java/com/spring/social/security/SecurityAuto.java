@@ -9,17 +9,17 @@ import org.springframework.social.security.SocialUserDetails;
 
 import com.spring.social.entity.AppUser;
 import com.spring.social.social.SocialUserDetailsImpl;
- 
+
 public class SecurityAuto {
- 
-    // Auto Login.
-    public static void logInUser(AppUser user, List<String> roleNames) {
- 
-        SocialUserDetails userDetails = new SocialUserDetailsImpl(user, roleNames);
- 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-                userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
- 
+
+	// Auto Login.
+	public static void logInUser(AppUser user, List<String> roleNames) {
+
+		SocialUserDetails userDetails = new SocialUserDetailsImpl(user, roleNames);
+
+		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+				userDetails.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+	}
+
 }
