@@ -16,46 +16,46 @@ import com.spring.social.dao.AppRoleDAO;
 import com.spring.social.dao.AppUserDAO;
 import com.spring.social.entity.AppUser;
 import com.spring.social.social.SocialUserDetailsImpl;
-  
+
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
-  
-    @Autowired
-    private AppUserDAO appUserDAO;
-  
-    @Autowired
-    private AppRoleDAO appRoleDAO;
-  
-    @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-  
-        System.out.println("UserDetailsServiceImpl.loadUserByUsername=" + userName);
-  
-        AppUser appUser = this.appUserDAO.findAppUserByUserName(userName);
-  
-        if (appUser == null) {
-            System.out.println("User not found! " + userName);
-            throw new UsernameNotFoundException("User " + userName + " was not found in the database");
-        }
-  
-        System.out.println("Found User: " + appUser);
-  
-        // [ROLE_USER, ROLE_ADMIN,..]
-        List<String> roleNames = this.appRoleDAO.getRoleNames(appUser.getUserId());
-  
-        List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-        if (roleNames != null) {
-            for (String role : roleNames) {
-                // ROLE_USER, ROLE_ADMIN,..
-                GrantedAuthority authority = new SimpleGrantedAuthority(role);
-                grantList.add(authority);
-            }
-        }
-  
-        SocialUserDetailsImpl userDetails = new SocialUserDetailsImpl(appUser, roleNames);
-  
-        return userDetails;
-    }
-  
+
+	@Autowired
+	private AppUserDAO appUserDAO;
+
+	@Autowired
+	private AppRoleDAO appRoleDAO;
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+		System.out.println("UserDetailsServiceImpl.loadUserByUsername=" + userName);
+
+		AppUser appUser = this.appUserDAO.findAppUserByUserName(userName);
+
+		if (appUser == null) {
+			System.out.println("User not found! " + userName);
+			throw new UsernameNotFoundException("User " + userName + " was not found in the database");
+		}
+
+		System.out.println("Found User: " + appUser);
+
+		// [ROLE_USER, ROLE_ADMIN,..]
+		List<String> roleNames = this.appRoleDAO.getRoleNames(appUser.getUserId());
+
+		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+		if (roleNames != null) {
+			for (String role : roleNames) {
+				// ROLE_USER, ROLE_ADMIN,..
+				GrantedAuthority authority = new SimpleGrantedAuthority(role);
+				grantList.add(authority);
+			}
+		}
+
+		SocialUserDetailsImpl userDetails = new SocialUserDetailsImpl(appUser, roleNames);
+
+		return userDetails;
+	}
+
 }

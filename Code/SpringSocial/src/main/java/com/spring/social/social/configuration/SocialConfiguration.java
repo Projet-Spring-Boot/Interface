@@ -43,7 +43,7 @@ public class SocialConfiguration implements SocialConfigurer, WebMvcConfigurer {
 
 	@Autowired
 	private AppUserDAO appUserDAO;
-	
+
 	@Autowired
 	private SocialProperties socialProperties;
 
@@ -58,17 +58,13 @@ public class SocialConfiguration implements SocialConfigurer, WebMvcConfigurer {
 		}
 
 		// Twitter
-		TwitterConnectionFactory tfactory = new TwitterConnectionFactory(
-				socialProperties.getTwitterConsumerKey(), 
+		TwitterConnectionFactory tfactory = new TwitterConnectionFactory(socialProperties.getTwitterConsumerKey(),
 				socialProperties.getTwitterConsumerSecret());
-		
-		
+
 		cfConfig.addConnectionFactory(tfactory);
 
-
 		// Google
-		GoogleConnectionFactory gfactory = new GoogleConnectionFactory(
-				socialProperties.getGoogleClientId(), 
+		GoogleConnectionFactory gfactory = new GoogleConnectionFactory(socialProperties.getGoogleClientId(),
 				socialProperties.getGoogleClientSecret());
 
 		gfactory.setScope(socialProperties.getGoogleScope());
@@ -116,20 +112,20 @@ public class SocialConfiguration implements SocialConfigurer, WebMvcConfigurer {
 
 	@Bean
 	public LocaleResolver localeResolver() {
-	    SessionLocaleResolver slr = new SessionLocaleResolver();
-	    slr.setDefaultLocale(Locale.US);
-	    return slr;
+		SessionLocaleResolver slr = new SessionLocaleResolver();
+		slr.setDefaultLocale(Locale.US);
+		return slr;
 	}
-	
+
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
-	    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-	    lci.setParamName("lang");
-	    return lci;
+		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+		lci.setParamName("lang");
+		return lci;
 	}
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(localeChangeInterceptor());
+		registry.addInterceptor(localeChangeInterceptor());
 	}
 }

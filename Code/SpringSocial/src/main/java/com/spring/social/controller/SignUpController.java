@@ -25,9 +25,9 @@ import com.spring.social.form.AppUserForm;
 import com.spring.social.security.SecurityAuto;
 
 @Controller
-@RequestMapping(value = { "/signup" })
+@RequestMapping("/signup")
 public class SignUpController {
-	
+
 	@Autowired
 	private AppUserDAO appUserDAO;
 
@@ -36,7 +36,7 @@ public class SignUpController {
 
 	@Autowired
 	private UsersConnectionRepository connectionRepository;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String signupPage(WebRequest request, Model model) {
 
@@ -63,7 +63,6 @@ public class SignUpController {
 		return "signupPage";
 	}
 
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public String signupSave(WebRequest request, Model model,
 			@ModelAttribute("myForm") @Validated AppUserForm appUserForm, BindingResult result,

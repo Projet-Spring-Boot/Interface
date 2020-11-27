@@ -16,7 +16,6 @@ public class MainController {
 
 	@Autowired
 	private AppUserValidator appUserValidator;
-	
 
 	@InitBinder
 	protected void initBinder(WebDataBinder dataBinder) {
@@ -32,13 +31,12 @@ public class MainController {
 			dataBinder.setValidator(appUserValidator);
 		}
 		// ...
-	} 
-	
+	}
+
 //	@RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
 //	public String logoutSuccessfulPage(Model model) {
 //		model.addAttribute("title", "Logout");
 //		return "logoutSuccessfulPage";
 //	}
 
-	
 }
