@@ -25,7 +25,7 @@ public class UserInfoController {
 		AppUser logineduser2 = this.appUserDAO.findAppUserByUserName(principal.getName());
 
 		model.addAttribute("appUser", logineduser2);
-
+		
 		return "userInfoPage";
 	}
 }

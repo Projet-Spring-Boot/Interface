@@ -21,5 +21,12 @@ public class LoginController {
 	public String signInPage(Model model) {
 		return "redirect:/login";
 	}
-
+	
+	/*
+	@RequestMapping(value = { "/resetPw" }, method = RequestMethod.GET)
+	public String resetPw(Model model) {
+		
+		return "resetPwPage";
+	}
+	*/
 }
