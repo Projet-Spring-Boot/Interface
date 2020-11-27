@@ -337,4 +337,16 @@ input:disabled{
     justify-content: space-start;
 }
 
+.button_valid{
+	background-color: #0e1a35;
+  	border: none;
+  	color: white;
+  	padding: 10px;
+  	margin: 10px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 15px;
+  	cursor: pointer;
+}
 
