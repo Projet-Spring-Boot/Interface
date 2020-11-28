@@ -27,7 +27,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2`
 
       - name: Maven Clean & Package
-        run: mvn -B clean package --file Code/SpringSocial/pom.xml
+        run: mvn -B clean package --file pom.xml
 
       - name: Login
         uses: docker/login-action@v1
