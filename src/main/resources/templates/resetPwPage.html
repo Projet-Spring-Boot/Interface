@@ -39,6 +39,23 @@
 	                           <div class="login-inner">
 									<label>Entrer votre adresse email :</label>
 									
+									<form th:action="@{/resetPw}" th:object="${resetPwForm}" method="POST">
+										<div class="login-form">
+											<div class="form-details">
+												<div class="form-group">
+													<span><i class="fa fa-envelope"></i></span>
+													<input type="text" th:field="*{email}" name="email" placeholder="Email Address">
+												</div>
+												<div class="form-group">
+													<input class="form-btn" type="submit" style="margin-bottom: 0px; margin-top: 55px;" value="Send"/>
+												</div>
+											</div>
+										</div>
+									</form>
+									
+									
+									
+									<!--
 	                                <div class="login-form">
                                         <div class="form-details">
                                         	<div class="form-group">
@@ -50,6 +67,7 @@
 											</div>
                                         </div>
 	                                </div>
+	                                -->
 	                            </div>
 	                        </div>
 	                    </div>
