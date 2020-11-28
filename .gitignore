@@ -1,6 +1,8 @@
-Code/SpringSocial/src/main/resources/application.properties
+src/main/resources/application.properties
 application.properties
-Code/SpringSocial/target/
-Code/SpringSocial/.project
-Code/SpringSocial/.classpath
-Code/SpringSocial/.settings/
+target/
+.project
+.classpath
+.settings/
+bin/.metadata/
+.settings/
