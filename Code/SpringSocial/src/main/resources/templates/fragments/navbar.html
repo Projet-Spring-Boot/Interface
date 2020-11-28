@@ -20,8 +20,6 @@
 
 					<li><a th:if="${#request.userPrincipal != null}" href="#"
 						th:href="@{/userInfo}">My account</a></li>
-					<li><a th:if="${#request.userPrincipal != null}" href="#"
-						th:href="@{/sendMessage}">Send message</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a th:if="${#request.userPrincipal == null}" href="#"
@@ -32,9 +30,8 @@
 						th:href="@{/login}"> <span class="glyphicon glyphicon-log-in"></span>
 							Login
 					</a></li>
-					<li> <span class="glyphicon glyphicon-log-out"></span><a th:if="${#request.userPrincipal != null}" href="#"
-						th:href="@{/logout}">Logout
-						</a></li>
+					<li><a th:if="${#request.userPrincipal != null}" href="#"
+						th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 				</ul>
 			</div>
 		</nav>
