@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Continuous Interface
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   
   deploy:
-    name: Integration
+    name: Interface
     runs-on: ubuntu-latest
     steps:
 
