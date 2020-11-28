@@ -2,7 +2,7 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Checkout master branch # On se place sur la branch master
+    - name: Checkout master branch
       uses: actions/checkout@v2
     
     - name: SonarCloud Scan
