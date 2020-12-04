@@ -15,22 +15,23 @@ public class ResetPwController {
 	public String resetPw(Model model) {
 		ResetPwForm resetPwForm = new ResetPwForm();
         model.addAttribute("resetPwForm", resetPwForm);
-        System.out.println("ResetPwController");
+        // System.out.println("ResetPwController");
         
 		return "resetPwPage";
 	}
 	
-	// On click methde.
-    @RequestMapping(value = { "/resetPw" }, method = RequestMethod.POST)
+	// On click methode.
+    @RequestMapping(method = RequestMethod.POST)
     public String sendResetEmail(Model model, //
             @ModelAttribute("resetPwForm") ResetPwForm form) {
  
-        // String email = form.getEmail();
+        String email = form.getEmail();
     	
-        System.out.println("sendResetEmail");
-        // System.out.println(email);
+        // System.out.println("sendResetEmail");
+        System.out.println(email);
  
         // model.addAttribute("errorMessage", errorMessage);
-        return "redirect:/loginPage";
+        return "redirect:/login";
+        // return "resetPwPage";
     }
 }
