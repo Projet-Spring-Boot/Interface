@@ -2,6 +2,37 @@
 
 **Ce repository est déstiné à heberger les sources du service dédié à l'interface utilisateur d'un projet visant à agréger tous les réseaux sociaux en un seul.**
 
+## Installation
+**Veuillez vous assurez que vous avez bien le fichier *application.properties* dans *src/main/ressources***
+
+```
+spring.thymeleaf.cache=false
+ 
+# ===============================
+# DATABASE
+# ===============================
+ 
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/social?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=tangui
+
+ 
+# ===============================
+# JPA / HIBERNATE
+# ===============================
+ 
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+
+# ===============================
+# I18N
+# ===============================
+
+spring.messages.basename=lang/messages
+```
+
 ## Fonctionnalitées couvertes par les interfaces
 - ### Visualiser les flux de ses différents réseaux sociaux sur la même page
 L'utilisateur peut consulter les flux d'actualité de tout ses réseaux sociaux sur une page sans différence de mise en page. Il doit pouvoir tout de même savoir distinguer de quel reseau social vient la publication. 

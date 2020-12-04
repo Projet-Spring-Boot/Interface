@@ -65,6 +65,13 @@
 						  									<p class="mb-0"><span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}" th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"> Static summary </span></p>
 													</div>
 												</div>
+												
+												
+												
+			                        			<div class="form-group">
+			                                		<a th:href="@{/resetPw}">Forgot your password ?</a>
+			                        			</div>
+			                        			
 												<div class="form-group">
 													<span ><i class="fa fa-user"></i></span>
 													<input type="text" name="username" placeholder="Username" value=''>
@@ -73,6 +80,18 @@
 												<div class="form-group">
 													<span><i class="fa fa-lock"></i></span>
 													<input type="password" name="password" placeholder="Password">
+												</div>
+												
+												<!--
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<input type="checkbox" id="stay_connected" name="stay_connected">
+													<label for="stay_connected">Stay connected</label>
+												</div>
+												-->
+												
+												<div class="form-group" style="margin-top: 25px; margin-bottom: 0px;">
+												  <input style="width: 20px;" type="checkbox" class="form-check-input" id="stay_connected_id">
+												  <label style="color:#5584ff; margin-right: 410px;" class="form-check-label" for="stay_connected_id">Stay connected</label>
 												</div>
                                         	</div>
                                         	<input class="form-btn" name="submit" type="submit" value="submit" />

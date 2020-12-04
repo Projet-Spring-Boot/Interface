@@ -46,17 +46,13 @@
 
                     <div class="tab-content">
                         <div id="register" class="tab-pane active">
-                           <div class="login-inner">
-                                
-                                <div class="title">
-                                	<h1>My<span> account</span></h1>
-                                </div>
-                                
-                                
-                                
-                                
+                        	<div class="login-inner">
+                            	<div class="col-md-7 col-sm-12 col-xs-12"> 
+                            		<div class="title">
+                                		<h1>My<span> account</span></h1>
+                                	</div>
+
                                 <div class="login-form">
-                                    
                                     
                                         <div class="form-details">
                                         	<div class="form-group">
@@ -75,15 +71,54 @@
 												<span ><i class="fa fa-tag"></i></span>
 												<input type="text" name="lastName" placeholder="Last Name" th:field="${appUser.lastName}" readonly>
 											</div>
-                                        </div>
 
-                                </div>
+                            			</div>
+                            	</div>
                             </div>
+                            <div class="col-md-5 col-sm-12 col-xs-12"> 
+                                
+                                <div class="title">
+                                	<h1>Social network</h1>
+                                </div>
+                                <div class="form-details">
+                                <div class="form-group">
+                                	<img alt="twitter_logo" src="images/twitter.png" width="50" height="50" th:src="@{../../images/logo-social/twitter.png}" style="margin-left: 10px;margin-right: 10px;"/>	
+                                	<a href="/" style="visibility:hidden" ><img alt="add_twitter" src="images/add.png" width="50" height="50" th:src="@{../../images/add.png}" style="visibility:hidden;margin-left: 10px;margin-right: 10px;"/> </a>
+                                   	<img alt="checked_twitter" src="images/checked.png" width="50" height="50" th:src="@{../../images/checked.png}" style="visibility:visible;margin-left: 10px;margin-right: 10px;"/>
+                                   	<a href="/" style="visibility:visible"><img alt="delete_twitter" src="images/delete.png" width="50" height="50" th:src="@{../../images/delete.png}" style="visibility:visible;margin-left: 10px;margin-right: 10px;"/></a>
+                                </div>
+                            	<div class="form-group">
+                                   	<img alt="facebook_logo" src="images/facebook.png" width="50" height="50" th:src="@{../../images/logo-social/facebook.png}" style="margin-left: 10px;margin-right: 10px;"/>
+                            		<a href="/" style="visibility:hidden"><img alt="add_facebook" src="images/add.png" width="50" height="50" th:src="@{../../images/add.png}" style="visibility:hidden;margin-left: 10px;margin-right: 10px;" /></a>
+                                	<img alt="add_facebook" src="images/checked.png" width="50" height="50" th:src="@{../../images/checked.png}" style="visibility:visible;margin-left: 10px;margin-right: 10px;" />
+                                   	<a href="/" style="visibility:visible"><img alt="add_facebook" src="images/delete.png" width="50" height="50" th:src="@{../../images/delete.png}" style="visibility:visible;margin-left: 10px;margin-right: 10px;"/></a>
+                                </div>  
+                                <div class="form-group">
+                                	<img alt="instagram_logo" src="images/instagram.png" width="50" height="50" th:src="@{../../images/logo-social/instagram.png}" style="margin-left: 10px;margin-right: 10px;"/>
+                                	<a href="/" style="visibility:visible"><img alt="add_instagram" src="images/add.png" width="50" height="50" th:src="@{../../images/add.png}" style="visibility:visible;margin-left: 10px;margin-right: 10px;"/></a>
+                                	<img alt="add_instagram" src="images/checked.png" width="50" height="50" th:src="@{../../images/checked.png}" style="visibility:hidden;margin-left: 10px;margin-right: 10px;" />
+                                   	<a href="/" style="visibility:hidden"><img alt="add_instagram" src="images/delete.png" width="50" height="50" th:src="@{../../images/delete.png}" style="visibility:hidden;margin-left: 10px;margin-right: 10px;"/></a>
+                                </div>  
+                                </div>                              
+                            </div>
+                            </div>
+                        	<div class="col-md-6 col-sm-6 col-xs-12">
+                        		<div class="form-details">
+                        			<div class="form-group">
+                                		<a  href="#" th:href="@{/newpassword}">Change password</a>
+                        			</div>
+                        		</div>
+                        	</div>
+                        	<div class="col-md-6 col-sm-6 col-xs-12">
+                        		<div class="form-details">
+                        			<div class="form-group">
+                                		<a href="url">Remove account</a>
+                        			</div>
+                        		</div>
+                        	</div>
                         </div>
-                       
-                    </div>
-                </div>
-            </div>
+           
+        </div>
         </div>
     </div>
     
