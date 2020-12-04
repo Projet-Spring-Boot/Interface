@@ -9,7 +9,6 @@
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
 
 <style type="text/css">
@@ -123,8 +122,6 @@ body {
 </head>
 
 <body>
-		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
-
 	<div class="container bootdey">
 
 
@@ -133,85 +130,71 @@ body {
 			<div class="panel">
 
 				<div class="panel-body">
-					<textarea class="form-control" rows="2"
-						placeholder="Share your mood"></textarea>
-					<div class="fixed-top">
-						<button class="btn btn-sm btn-primary pull-right" type="submit">
-							<i class="fa fa-pencil fa-fw"></i> Share
-						</button>
-						<a class="btn btn-social-icon btn-twitter pull-right enabled"> <i
-							class="fa fa-twitter fa-2x" aria-hidden="true" onclick="toggle(this);"></i>
-						</a> <a class="btn btn-social-icon btn-facebook pull-right disabled"
-							type="button" role="button">
-								<i class="fa fa-facebook fa-2x"
-								aria-hidden="true">
-								</i>
-							</a>
-						
-						<a class="btn " href="#"> <i class="fa fa-upload fa-2x"
-							aria-hidden="true"></i>
-						</a>
 
+					<div class="form-details">
+						<form th:object="${messageForm}"
+							th:action="@{/twitterfeed/sendMessage}" method="POST">
+							<textarea class="form-control" rows="2"
+								placeholder="Share your mood"></textarea>
+
+							<button class="btn btn-sm btn-primary pull-right" type="submit">
+								<i class="fa fa-pencil fa-fw"></i> Share
+							</button>
+						</form>
+
+					</div>
+
+					<div class="fixed-top">
+
+						<a class="btn btn-social-icon btn-twitter pull-right"> <i
+							class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+						</a> <a class="btn btn-social-icon btn-facebook pull-right"
+							type="button" role="button"><i class="fa fa-facebook fa-2x"
+							aria-hidden="true"></i></a> <a href="#"> </a> <a class="btn "
+							href="#"> <i class="fa fa-upload fa-2x" aria-hidden="true"></i>
+						</a>
 					</div>
 
 				</div>
 			</div>
 			<div class="panel">
-				<div class="panel-body">
-					<!-- Newsfeed Content -->
-					<!--===================================================-->
-					<div class="media-block pad-all">
-						<a class="media-left" href="#"><img class="img-circle img-sm"
-							alt="Profile Picture"
-							src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
-						<div class="media-body">
-							<div class="mar-btm">
-								<a href="#"
-									class="btn-link text-semibold media-heading box-inline">John
-									Doe</a>
-
-							</div>
-							<p>Lorem ipsum dolor sit amet.</p>
-							<img class="img-responsive thumbnail"
-								src="https://via.placeholder.com/400x300" alt="Image">
-							<div class="pad-ver">
-								<span class="tag tag-sm"><i
-									class="fa fa-heart text-danger"></i></span>
-								<div class="btn-group">
-									<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
-										class="fa fa-thumbs-up"></i></a> <a
-										class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-										class="fa fa-thumbs-down"></i></a>
+				<div th:each="flowUtils: ${flowsUtils}">
+					<div class="panel-body">
+						<!-- Newsfeed Content -->
+						<div class="media-block">
+							<a class="media-left"><img class="img-circle img-sm"
+								alt="Profile Picture"
+								src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
+							<div class="media-body">
+								<div class="mar-btm">
+									<a href="#"
+										class="btn-link text-semibold media-heading box-inline">User1</a>
 								</div>
+								<p>contenu du poste</p>
+								<div class="pad-ver">
+									<div class="btn-group">
+										<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
+											class="fa fa-thumbs-up"></i></a> <a
+											class="btn btn-sm btn-default btn-hover-danger" href="#"><i
+											class="fa fa-thumbs-down"></i></a>
+									</div>
+									<a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+								</div>
+								<hr>
 							</div>
-							<hr>
 						</div>
 					</div>
-					<!--===================================================-->
 					<!-- End Newsfeed Content -->
 				</div>
+
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">	
-		function toggle(el){
-		    if(el.className!="fa fa-twitter fa-2x")
-		    {
-		        el.className="fa fa-twitter fa-2x";
-		    }
-		    else if(el.className=="fa fa-twitter fa-2x")
-		    {
-		        el.className="fa fa-twitter-square fa-2x";
-		    }
-	
-		    return false;
-		}  
-	</script>
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script
 		src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-​
+		
 	</script>
 </body>
 </html>
