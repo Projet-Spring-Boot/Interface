@@ -26,6 +26,7 @@
 </head>
 <body>
 	<div id="particles-js">
+		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
 
 		<div class="login-area particles-absolute">
 			<div class="bg-image">
@@ -40,12 +41,8 @@
 											class="img-responsive" />
 									</div>
 								</div>
-
 							</div>
-
-
 						</div>
-
 						<div class="tab-content">
 							<div id="register" class="tab-pane active">
 								<div class="login-inner">
@@ -139,6 +136,12 @@
 													alt="add_instagram" src="images/delete.png" width="50"
 													height="50" th:src="@{../../images/delete.png}"
 													style="visibility: hidden; margin-left: 10px; margin-right: 10px;" /></a>
+											</div>
+											<div class="form-group">
+												<p> Duree de la session : <span th:text="${dureeSession}"> 00:00 </span></p>
+											</div>
+											<div class="form-group">
+												<p> Nombre de connexion : <span th:text="${nbConnexion}"> 0 </span></p>
 											</div>
 										</div>
 									</div>
