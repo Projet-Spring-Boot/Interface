@@ -163,16 +163,15 @@ body {
 					<div class="panel-body">
 						<!-- Newsfeed Content -->
 						<div class="media-block">
-							<a class="media-left"><img class="img-circle img-sm"
-								alt="Profile Picture"
-								src="https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png"></a>
+							<a class="media-left"><img class="img-circle img-sm" alt="Profile Picture" th:src="${flowUtils.flow.user_img}"></a>
 							<div class="media-body">
 								<div class="mar-btm">
-									<a href="#"
-										class="btn-link text-semibold media-heading box-inline">User1</a>
+									<a href="#" class="btn-link text-semibold media-heading box-inline" th:text="${flowUtils.flow.user_name}"></a>
 								</div>
-								<p>contenu du poste</p>
+								<p th:text="${flowUtils.flow.published_content}"> </p>
+								  <img class="img-responsive thumbnail" th:src="${flowUtils.published_media}" alt="Image">
 								<div class="pad-ver">
+								<p th:text="${flowUtils.flow.source}"> </p>
 									<div class="btn-group">
 										<a class="btn btn-sm btn-default btn-hover-success" href="#"><i
 											class="fa fa-thumbs-up"></i></a> <a
