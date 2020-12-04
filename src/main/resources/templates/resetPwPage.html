@@ -39,17 +39,27 @@
 	                           <div class="login-inner">
 									<label>Entrer votre adresse email :</label>
 									
-	                                <div class="login-form">
-                                        <div class="form-details">
-                                        	<div class="form-group">
-												<span><i class="fa fa-envelope"></i></span>
-												<input type="text" name="email" placeholder="Email Address">
+									<!--
+									<form th:action="@{/resetPw}" th:object="${resetPwForm}" method="POST">
+										<input type="email" th:field="*{email}" name="email" placeholder="Email Address">
+										<input class="form-btn" type="submit" style="margin-bottom: 0px; margin-top: 55px;" value="Send"/>
+									</form>
+									-->
+									
+									<form th:action="@{/resetPw}" th:object="${resetPwForm}" method="POST">
+										<div class="login-form">
+											<div class="form-details">
+												<div class="form-group">
+													<span><i class="fa fa-envelope"></i></span>
+													<input type="text" th:field="*{email}" name="email" placeholder="Email Address">
+												</div>
+												<div class="form-group">
+													<input class="form-btn" type="submit" style="margin-bottom: 0px; margin-top: 55px;" value="Send"/>
+												</div>
 											</div>
-											<div class="form-group">
-												<button class="form-btn" type="button" style="margin-bottom: 0px; margin-top: 55px;">Send</button>
-											</div>
-                                        </div>
-	                                </div>
+										</div>
+									</form>
+									
 	                            </div>
 	                        </div>
 	                    </div>

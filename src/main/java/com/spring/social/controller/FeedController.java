@@ -34,7 +34,7 @@ public class FeedController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String sendMessage(Model model) {
 		model.addAttribute("messageForm", new MessageForm());
-		return "sendMessage";
+		return "feed";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
